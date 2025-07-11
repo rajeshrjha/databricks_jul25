@@ -1,0 +1,391 @@
+{
+  "datasets": [
+    {
+      "name": "e98c8744",
+      "displayName": "insights",
+      "queryLines": [
+        "SELECT * FROM jpmc.rajesh_gold.insights"
+      ]
+    },
+    {
+      "name": "ea876cd0",
+      "displayName": "top_3_cust",
+      "queryLines": [
+        "SELECT * FROM jpmc.rajesh_gold.top_3_cust"
+      ]
+    },
+    {
+      "name": "078416c3",
+      "displayName": "sales_cleaned",
+      "queryLines": [
+        "SELECT * FROM jpmc.rajesh_silver.sales_cleaned"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "c1131baa",
+      "displayName": "Rajesh's Sales Dashboard",
+      "layout": [
+        {
+          "widget": {
+            "name": "1e920a08",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "078416c3",
+                  "fields": [
+                    {
+                      "name": "sum(total_amount)",
+                      "expression": "SUM(`total_amount`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_amount)",
+                  "displayName": "Sum of total_amount"
+                }
+              },
+              "frame": {
+                "title": "Total Sales Amount",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "3e1d7200",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "078416c3",
+                  "fields": [
+                    {
+                      "name": "product_id",
+                      "expression": "`product_id`"
+                    },
+                    {
+                      "name": "sum(total_amount)",
+                      "expression": "SUM(`total_amount`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "product_id",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "displayName": "product_id"
+                },
+                "y": {
+                  "fieldName": "sum(total_amount)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Sum of total_amount"
+                }
+              },
+              "frame": {
+                "title": "Sales by Product",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 2,
+            "height": 4
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "f030d94d",
+      "displayName": "Dashboard-2",
+      "layout": [
+        {
+          "widget": {
+            "name": "2e977519",
+            "multilineTextboxSpec": {
+              "lines": [
+                ""
+              ]
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "62b70c7d",
+            "queries": [
+              {
+                "name": "dashboards/01f05e18f41b106089c521b7fdcbf332/datasets/01f05e193cdc1b028a0984475ea94618_total_customers",
+                "query": {
+                  "datasetName": "e98c8744",
+                  "fields": [
+                    {
+                      "name": "total_customers",
+                      "expression": "`total_customers`"
+                    },
+                    {
+                      "name": "total_customers_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "total_customers",
+                    "displayName": "total_customers",
+                    "queryName": "dashboards/01f05e18f41b106089c521b7fdcbf332/datasets/01f05e193cdc1b028a0984475ea94618_total_customers"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 2,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "cf048a8b",
+            "queries": [
+              {
+                "name": "dashboards/01f05e18f41b106089c521b7fdcbf332/datasets/01f05e193d7b1d77b54f243963430b87_customer_id",
+                "query": {
+                  "datasetName": "ea876cd0",
+                  "fields": [
+                    {
+                      "name": "customer_id",
+                      "expression": "`customer_id`"
+                    },
+                    {
+                      "name": "customer_id_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "customer_id",
+                    "displayName": "customer_id",
+                    "queryName": "dashboards/01f05e18f41b106089c521b7fdcbf332/datasets/01f05e193d7b1d77b54f243963430b87_customer_id"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 2,
+            "width": 2,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "f25639ff",
+            "queries": [
+              {
+                "name": "dashboards/01f05e18f41b106089c521b7fdcbf332/datasets/01f05e197c3218eda732939add74c3ad_total_amount",
+                "query": {
+                  "datasetName": "078416c3",
+                  "fields": [
+                    {
+                      "name": "total_amount",
+                      "expression": "`total_amount`"
+                    },
+                    {
+                      "name": "total_amount_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "total_amount",
+                    "displayName": "total_amount",
+                    "queryName": "dashboards/01f05e18f41b106089c521b7fdcbf332/datasets/01f05e197c3218eda732939add74c3ad_total_amount"
+                  }
+                ]
+              },
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 2,
+            "width": 2,
+            "height": 1
+          }
+        },
+        {
+          "widget": {
+            "name": "f2bd24a7",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "e98c8744",
+                  "fields": [
+                    {
+                      "name": "sum(total_customers)",
+                      "expression": "SUM(`total_customers`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_customers)",
+                  "displayName": "Sum of total_customers"
+                }
+              },
+              "frame": {
+                "title": "Total Customers",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 3,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "772ed121",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ea876cd0",
+                  "fields": [
+                    {
+                      "name": "sum(total_amount)",
+                      "expression": "SUM(`total_amount`)"
+                    },
+                    {
+                      "name": "customer_id",
+                      "expression": "`customer_id`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(total_amount)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Sum of total_amount"
+                },
+                "color": {
+                  "fieldName": "customer_id",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "customer_id"
+                }
+              },
+              "frame": {
+                "title": "Total Amount by Customer",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 3,
+            "width": 3,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    }
+  }
+}
